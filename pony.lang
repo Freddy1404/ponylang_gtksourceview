@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="pony" name="Pony" version="2.0" _section="Source">
+
+	<metadata>
+	  <property name="mimetypes">text/plain</property>
+	  <property name="globs">*.pony</property>
+	</metadata>
+
+	<styles>
+		<style id="comment" 			name="Comment" 					map-to="def:comment"/>
+		<style id="string" 				name="String" 					map-to="def:string"/>
+		<style id="escaped-character" 	name="Escaped Character" 		map-to="def:special-char"/>
+		<style id="char" 				name="Character" 				map-to="def:character"/>
+		<style id="keyword" 			name="Keyword" 					map-to="def:keyword"/>
+		<style id="type" 				name="Data Type" 				map-to="def:type"/>
+		<style id="escaped-character" 	name="Escaped Character"        map-to="def:special-char"/>
+		<style id="external"			name="External"					map-to="c:preprocessor"/>
+		<style id="obj-cap"				name="Object capabilities"		map-to="def:preprocessor"/>
+		<style id="this"        		name="This"               		map-to="def:special-constant"/>
+		<style id="floating-point"      name="Floating point number" 	map-to="def:floating-point"/>
+		<style id="decimal"             name="Decimal number"        	map-to="def:number"/>
+		<style id="hexadecimal"       	name="Hexadecimal number"    	map-to="def:base-n-integer"/>
+		<style id="octal"       		name="Octal number"    			map-to="def:base-n-integer"/>
+		<style id="boolean"             name="Boolean value"         	map-to="def:boolean"/>
+		<style id="operator"          	name="Operator"              	map-to="def:operator"/>
+		<style id="constant"          	name="constant"              	map-to="def:constant"/>
+	</styles>
+
+	<definitions>
+		<define-regex id="escaped-character" extended="true">
+			\\(
+			[\\\'abefnrtv0] |
+			x4F[0-9A-Fa-f][0-9A-Fa-f]
+			)
+		</define-regex>
+		
+		<context id="char" style-ref="char">
+			<match>'(\%{escaped-character}|.)'</match>
+		</context>
+    
+		<context id="keywords" style-ref="keyword">
+			<keyword>^actor</keyword>
+			<keyword>as</keyword>
+			<keyword>be</keyword>
+			<keyword>break</keyword>
+			<keyword>^class</keyword>
+			<keyword>compile_error</keyword>
+			<keyword>continue</keyword>
+			<keyword>consume</keyword>
+			<keyword>do</keyword>
+			<keyword>else</keyword>
+			<keyword>elseif</keyword>
+			<keyword>embed</keyword>
+			<keyword>end</keyword>
+			<keyword>error</keyword>
+			<keyword>for</keyword>
+			<keyword>fun</keyword>
+			<keyword>if</keyword>
+			<keyword>ifdef</keyword>
+			<keyword>in</keyword>
+			<keyword>^interface</keyword>
+			<keyword>is</keyword>
+			<keyword>lambda</keyword>
+			<keyword>let</keyword>
+			<keyword>match</keyword>
+			<keyword>new</keyword>
+			<keyword>not</keyword>
+			<keyword>^object</keyword>
+			<keyword>primitive</keyword>
+			<keyword>recover</keyword>
+			<keyword>repeat</keyword>
+			<keyword>return</keyword>
+			<keyword>struct</keyword>
+			<keyword>then</keyword>
+			<keyword>^trait</keyword>
+			<keyword>try</keyword>
+			<keyword>type</keyword>
+			<keyword>until</keyword>
+			<keyword>var</keyword>
+			<keyword>where</keyword>
+			<keyword>while</keyword>
+			<keyword>with</keyword>
+		</context>
+		
+		<context id="types" style-ref="type">
+			<keyword>Bool</keyword>
+			<keyword>U8</keyword>
+			<keyword>U16</keyword>
+			<keyword>U32</keyword>
+			<keyword>U64</keyword>
+			<keyword>U128</keyword>
+			<keyword>I8</keyword>
+			<keyword>I16</keyword>
+			<keyword>I32</keyword>
+			<keyword>I64</keyword>
+			<keyword>I128</keyword>
+			<keyword>ISize</keyword>
+			<keyword>ILong</keyword>
+			<keyword>USize</keyword>
+			<keyword>ULong</keyword>
+			<keyword>F32</keyword>
+			<keyword>F64</keyword>
+			<keyword>None</keyword>
+			<keyword>OutStream</keyword>
+			<keyword>InStream</keyword>
+			<keyword>String</keyword>
+			<keyword>Env</keyword>
+			<keyword>Pointer</keyword>
+			<keyword>NullablePointer</keyword>
+			
+			<keyword>Array</keyword>
+			<keyword>List</keyword>
+			<keyword>Map</keyword>
+			<keyword>HashMap</keyword>
+			<keyword>Range</keyword>
+			<keyword>Equatable</keyword>
+			<keyword>Stringable</keyword>
+		</context>
+		
+		<context id="obj-cap" style-ref="obj-cap">
+			<keyword>tag</keyword>
+			<keyword>trn</keyword>
+			<keyword>val</keyword>
+			<keyword>iso</keyword>
+			<keyword>box</keyword>
+			<keyword>ref</keyword>
+		</context>
+		
+		<context id="anno" style-ref="obj-cap">
+			<!-- TODO: Add backslashes -->
+			<keyword>packed</keyword>
+			<keyword>likely</keyword>
+			<keyword>unlikely</keyword>
+		</context>
+		
+		<context id="operators" style-ref="constant">
+			<keyword>digestof</keyword>
+			<keyword>addressof</keyword>
+		</context>
+		
+		<context id="spec-func" style-ref="constant">
+			<keyword>_init</keyword>
+			<keyword>_final</keyword>
+			<keyword>dispose</keyword>
+			<keyword>eq</keyword>
+			<keyword>apply</keyword>
+			<keyword>create</keyword>
+			<keyword>update</keyword>
+			<keyword>hash</keyword>
+			<keyword>make</keyword>
+			<keyword>long_test</keyword>
+			<keyword>complete</keyword>
+			<keyword>timed_out</keyword>
+			<keyword>tear_down</keyword>
+			<keyword>hash</keyword>
+			<keyword>Main</keyword>
+		</context>
+		
+		<context id="boolean" style-ref="boolean">
+			<keyword>true</keyword>
+			<keyword>false</keyword>
+		</context>
+		
+		<context id="this" style-ref="this">
+			<keyword>this</keyword>
+		</context>
+		
+		<context id="docstring" style-ref="string" class-disabled="no-spell-check">
+			<start>"""</start>
+			<end>"""</end>
+		</context>
+		
+		<context id="string" style-ref="string" end-at-line-end="true" class-disabled="no-spell-check">
+			<start>"</start>
+			<end>"</end>
+			<include>
+				<context id="escape" style-ref="escaped-character">
+					<match>\\.</match>
+					<!-- TODO: \u00FE, \u10FFFE -->
+				</context>
+				<context id="escape-use" style-ref="constant">
+					<keyword>package</keyword>
+					<keyword>lib</keyword>
+					<keyword>path</keyword>
+				</context>
+			</include>
+		</context>
+		
+		<context id="externals" style-ref="external">
+			<keyword>^use</keyword>
+		</context>
+		
+		<context id="pony" class="no-spell-check">
+      		<include>
+      			<context ref="def:decimal" style-ref="decimal"/>
+      			<context ref="def:octal" style-ref="octal"/>
+      			<context ref="def:hexadecimal" style-ref="hexadecimal"/>
+      			<context ref="def:float" style-ref="floating-point"/>
+      			<context ref="def:c-like-comment" style-ref="comment"/>
+      			<context ref="def:c-like-comment-multiline" style-ref="comment"/>
+      			
+      			<context ref="char"/>
+      			<context ref="keywords"/>
+      			<context ref="types"/>
+      			<context ref="boolean"/>
+      			<context ref="this"/>
+      			<context ref="docstring"/>
+      			<context ref="string"/>
+      			<context ref="externals"/>
+      			<context ref="obj-cap"/>
+      			<context ref="operators"/>
+      			<context ref="spec-func"/>
+      			<context ref="anno"/>
+      		</include>
+      	</context>
+	</definitions>
+</language>
