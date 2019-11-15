@@ -7,23 +7,23 @@
 	</metadata>
 
 	<styles>
-		<style id="comment" 			name="Comment" 					map-to="def:comment"/>
-		<style id="string" 				name="String" 					map-to="def:string"/>
-		<style id="escaped-character" 	name="Escaped Character" 		map-to="def:special-char"/>
-		<style id="char" 				name="Character" 				map-to="def:character"/>
-		<style id="keyword" 			name="Keyword" 					map-to="def:keyword"/>
-		<style id="type" 				name="Data Type" 				map-to="def:type"/>
-		<style id="escaped-character" 	name="Escaped Character"        map-to="def:special-char"/>
-		<style id="external"			name="External"					map-to="c:preprocessor"/>
-		<style id="obj-cap"				name="Object capabilities"		map-to="def:preprocessor"/>
-		<style id="this"        		name="This"               		map-to="def:special-constant"/>
-		<style id="floating-point"      name="Floating point number" 	map-to="def:floating-point"/>
-		<style id="decimal"             name="Decimal number"        	map-to="def:number"/>
-		<style id="hexadecimal"       	name="Hexadecimal number"    	map-to="def:base-n-integer"/>
-		<style id="octal"       		name="Octal number"    			map-to="def:base-n-integer"/>
-		<style id="boolean"             name="Boolean value"         	map-to="def:boolean"/>
-		<style id="operator"          	name="Operator"              	map-to="def:operator"/>
-		<style id="constant"          	name="constant"              	map-to="def:constant"/>
+		<style id="comment"              name="Comment"                  map-to="def:comment"/>
+		<style id="string"               name="String"                   map-to="def:string"/>
+		<style id="escaped-character"    name="Escaped Character"        map-to="def:special-char"/>
+		<style id="char"                 name="Character"                map-to="def:character"/>
+		<style id="keyword"              name="Keyword"                  map-to="def:keyword"/>
+		<style id="type"                 name="Data Type"                map-to="def:type"/>
+		<style id="escaped-character"    name="Escaped Character"        map-to="def:special-char"/>
+		<style id="external"             name="External"                 map-to="c:preprocessor"/>
+		<style id="obj-cap"              name="Object capabilities"      map-to="def:preprocessor"/>
+		<style id="this"                 name="This"                     map-to="def:special-constant"/>
+		<style id="floating-point"       name="Floating point number"    map-to="def:floating-point"/>
+		<style id="decimal"              name="Decimal number"           map-to="def:number"/>
+		<style id="hexadecimal"          name="Hexadecimal number"       map-to="def:base-n-integer"/>
+		<style id="octal"                name="Octal number"             map-to="def:base-n-integer"/>
+		<style id="boolean"              name="Boolean value"            map-to="def:boolean"/>
+		<style id="operator"             name="Operator"                 map-to="def:operator"/>
+		<style id="constant"             name="constant"                 map-to="def:constant"/>
 	</styles>
 
 	<definitions>
@@ -33,11 +33,11 @@
 			x4F[0-9A-Fa-f][0-9A-Fa-f]
 			)
 		</define-regex>
-		
+
 		<context id="char" style-ref="char">
 			<match>'(\%{escaped-character}|.)'</match>
 		</context>
-    
+
 		<context id="keywords" style-ref="keyword">
 			<keyword>^actor</keyword>
 			<keyword>as</keyword>
@@ -81,7 +81,7 @@
 			<keyword>while</keyword>
 			<keyword>with</keyword>
 		</context>
-		
+
 		<context id="types" style-ref="type">
 			<keyword>Bool</keyword>
 			<keyword>U8</keyword>
@@ -107,7 +107,7 @@
 			<keyword>Env</keyword>
 			<keyword>Pointer</keyword>
 			<keyword>NullablePointer</keyword>
-			
+
 			<keyword>Array</keyword>
 			<keyword>List</keyword>
 			<keyword>Map</keyword>
@@ -116,7 +116,7 @@
 			<keyword>Equatable</keyword>
 			<keyword>Stringable</keyword>
 		</context>
-		
+
 		<context id="obj-cap" style-ref="obj-cap">
 			<keyword>tag</keyword>
 			<keyword>trn</keyword>
@@ -125,19 +125,19 @@
 			<keyword>box</keyword>
 			<keyword>ref</keyword>
 		</context>
-		
+
 		<context id="anno" style-ref="obj-cap">
 			<!-- TODO: Add backslashes -->
 			<keyword>packed</keyword>
 			<keyword>likely</keyword>
 			<keyword>unlikely</keyword>
 		</context>
-		
+
 		<context id="operators" style-ref="constant">
 			<keyword>digestof</keyword>
 			<keyword>addressof</keyword>
 		</context>
-		
+
 		<context id="spec-func" style-ref="constant">
 			<keyword>_init</keyword>
 			<keyword>_final</keyword>
@@ -155,21 +155,21 @@
 			<keyword>hash</keyword>
 			<keyword>Main</keyword>
 		</context>
-		
+
 		<context id="boolean" style-ref="boolean">
 			<keyword>true</keyword>
 			<keyword>false</keyword>
 		</context>
-		
+
 		<context id="this" style-ref="this">
 			<keyword>this</keyword>
 		</context>
-		
+
 		<context id="docstring" style-ref="string" class-disabled="no-spell-check">
 			<start>"""</start>
 			<end>"""</end>
 		</context>
-		
+
 		<context id="string" style-ref="string" end-at-line-end="true" class-disabled="no-spell-check">
 			<start>"</start>
 			<end>"</end>
@@ -185,33 +185,33 @@
 				</context>
 			</include>
 		</context>
-		
+
 		<context id="externals" style-ref="external">
 			<keyword>^use</keyword>
 		</context>
-		
+
 		<context id="pony" class="no-spell-check">
-      		<include>
-      			<context ref="def:decimal" style-ref="decimal"/>
-      			<context ref="def:octal" style-ref="octal"/>
-      			<context ref="def:hexadecimal" style-ref="hexadecimal"/>
-      			<context ref="def:float" style-ref="floating-point"/>
-      			<context ref="def:c-like-comment" style-ref="comment"/>
-      			<context ref="def:c-like-comment-multiline" style-ref="comment"/>
-      			
-      			<context ref="char"/>
-      			<context ref="keywords"/>
-      			<context ref="types"/>
-      			<context ref="boolean"/>
-      			<context ref="this"/>
-      			<context ref="docstring"/>
-      			<context ref="string"/>
-      			<context ref="externals"/>
-      			<context ref="obj-cap"/>
-      			<context ref="operators"/>
-      			<context ref="spec-func"/>
-      			<context ref="anno"/>
-      		</include>
-      	</context>
+	  		<include>
+	  			<context ref="def:decimal" style-ref="decimal"/>
+	  			<context ref="def:octal" style-ref="octal"/>
+	  			<context ref="def:hexadecimal" style-ref="hexadecimal"/>
+	  			<context ref="def:float" style-ref="floating-point"/>
+	  			<context ref="def:c-like-comment" style-ref="comment"/>
+	  			<context ref="def:c-like-comment-multiline" style-ref="comment"/>
+
+	  			<context ref="char"/>
+	  			<context ref="keywords"/>
+	  			<context ref="types"/>
+	  			<context ref="boolean"/>
+	  			<context ref="this"/>
+	  			<context ref="docstring"/>
+	  			<context ref="string"/>
+	  			<context ref="externals"/>
+	  			<context ref="obj-cap"/>
+	  			<context ref="operators"/>
+	  			<context ref="spec-func"/>
+	  			<context ref="anno"/>
+	  		</include>
+	  	</context>
 	</definitions>
 </language>
